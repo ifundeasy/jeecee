@@ -7,6 +7,7 @@ var bower = 'bower/';
 'use strict';
 require.config({
 	paths: {
+		'jquery'           : bower + 'jquery/dist/jquery',
 		'requirejsDomReady': bower + 'requirejs-domready/domReady',
 		'angular'          : bower + 'angular/angular',
 		'angularLoader'    : bower + 'angular-loader/angular-loader',
@@ -37,7 +38,7 @@ require.config({
 		 * todo : basic crucial librrary, angular no need jQuery, belive it!
 		 */
 		'angular'        : {
-			'deps'   : ['requirejsDomReady'],
+			'deps'   : ['requirejsDomReady', 'jquery'],
 			'exports': 'angular'
 		},
 		'angularAMD'     : {
@@ -56,10 +57,18 @@ require.config({
 			'deps'   : ['angular'],
 			'exports': 'angularResource'
 		},
+		'foundation'  : {
+			'deps'   : ['jquery', 'angular'],
+			'exports': 'foundation'
+		},
 
 		/**
 		 * todo : your custom library
 		 */
+		'debugger': {
+			'deps'   : [],
+			'exports': 'debugger'
+		},
 		'config'  : {
 			'deps'   : ['angular'],
 			'exports': 'config'
@@ -72,13 +81,8 @@ require.config({
 			'deps'   : ['config'],
 			'exports': 'ipInfoDB'
 		},
-
-		'debugger': {
-			'deps'   : ['config'],
-			'exports': 'debugger'
-		},
 		'jeecee'  : {
-			'deps'   : ['debugger', 'config'],
+			'deps'   : ['angular', 'jquery', 'foundation', 'config'],
 			'exports': 'jeecee'
 		}
 	},
