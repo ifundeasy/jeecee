@@ -3,21 +3,28 @@
  */
 
 log(config);
+config.initBase('./application');
 define(['angularAMD', 'angularRoute'], function (angularAMD) {
-	var application = angular.module("webapp", ['ngRoute']);
+	var application = angular.module("jeeceeApp", ['ngRoute']);
 
 	application.config(function ($routeProvider) {
 		$routeProvider
 			.when("/home", angularAMD.route({
-				templateUrl: 'application/views/home.html',
-				controller: 'HomeCtrl',
-				controllerUrl: 'application/controllers/home'
+				templateUrl: config.view('default.html'),
+				controller: 'defaultCtrl',
+				controllerUrl: config.controller('default')
 			}))
-			.when("/view1", angularAMD.route({
-				templateUrl: 'application/views/view1.html',
-				controller: 'View1Ctrl',
-				controllerUrl: 'application/controllers/view1'
+			.when("/agent", angularAMD.route({
+				templateUrl: config.view('agent.html'),
+				controller: 'agentCtrl',
+				controllerUrl: config.controller('agent')
 			}))
+			.when("/xyclus", angularAMD.route({
+				templateUrl: config.view('xyclus.html'),
+				controller: 'xyclusCtrl',
+				controllerUrl: config.controller('xyclus')
+			}))
+			//
 			.otherwise({
 				redirectTo: "/home"
 			});

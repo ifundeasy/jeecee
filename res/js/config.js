@@ -1,23 +1,33 @@
 /**
  * Created by rappresent on 3/27/14.
  */
-function z () {
+function z() {
 	var me = this;
-	me.orderType = "undefined";
-	me.orderNumb = "undefined";
 }
 
 z.prototype.initBase = function (string) {
 	var me = this;
 	string = string || './app';
 
-	me.base = string;
-	me.view = me.base + '/views/';
-	me.ctrl = me.base + '/controllers/';
-	me.model = me.base + '/model/';
-	me.store = me.base + '/store/';
+	me.modules = {
+		base       : string,
+		views      : string + '/views/',
+		controllers: string + '/controllers/',
+		models     : string + '/models/',
+		stores     : string + '/stores/'
+	};
 
 	return string
+};
+
+z.prototype.view = function (string) {
+	var me = this;
+	return me.modules.views + string;
+};
+
+z.prototype.controller = function (string) {
+	var me = this;
+	return me.modules.controllers + string;
 };
 
 z.prototype.numberWithCommas = function (x) {
@@ -40,5 +50,5 @@ z.prototype.init = function () {
 	window.store = {};
 };
 
-config = new z ();
+config = new z();
 config.init();

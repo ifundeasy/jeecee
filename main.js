@@ -7,6 +7,8 @@ var bower = 'bower/';
 'use strict';
 require.config({
 	paths: {
+		'modernizr'        : bower + 'modernizr/modernizr',
+		'foundation'       : bower + 'foundation/js/foundation',
 		'jquery'           : bower + 'jquery/dist/jquery',
 		'requirejsDomReady': bower + 'requirejs-domready/domReady',
 		'angular'          : bower + 'angular/angular',
@@ -20,7 +22,6 @@ require.config({
 		'angularMocks'     : bower + 'angular-mocks/angular-mocks',
 		'angularSanitize'  : bower + 'angular-sanitize/angular-sanitize',
 		'angularTouch'     : bower + 'angular-touch/angular-touch',
-		'foundation'       : bower + 'foundation/js/foundation',
 
 		'debugger': 'res/js/debug',
 		'config'  : 'res/js/config',
@@ -37,6 +38,10 @@ require.config({
 		/**
 		 * todo : basic crucial librrary, angular no need jQuery, belive it!
 		 */
+		'foundation'  : {
+			'deps'   : ['jquery', 'modernizr'],
+			'exports': 'foundation'
+		},
 		'angular'        : {
 			'deps'   : ['requirejsDomReady', 'jquery'],
 			'exports': 'angular'
@@ -57,10 +62,6 @@ require.config({
 			'deps'   : ['angular'],
 			'exports': 'angularResource'
 		},
-		'foundation'  : {
-			'deps'   : ['jquery', 'angular'],
-			'exports': 'foundation'
-		},
 
 		/**
 		 * todo : your custom library
@@ -78,7 +79,7 @@ require.config({
 			'exports': 'initial'
 		},
 		'ipInfoDB': {
-			'deps'   : ['config'],
+			'deps'   : ['initial'],
 			'exports': 'ipInfoDB'
 		},
 		'jeecee'  : {
@@ -96,6 +97,6 @@ require.config({
 /**
  * todo : before kick start open up your custom library here
  */
-require(['debugger', 'config', 'initial', 'ipInfoDB'], function () {
+require(['foundation', 'debugger', 'config', 'initial', 'ipInfoDB'], function () {
 	console.log(arguments);
 });
